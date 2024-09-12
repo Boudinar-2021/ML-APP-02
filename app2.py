@@ -7,6 +7,14 @@ import zipfile
 
 st.set_page_config(page_title='Medical Image Filter App', layout='wide')
 
+st.markdown("""
+    <style>
+    .centered-text {
+        text-align: center;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
 def pil_to_cv2(image):
     return cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
 
@@ -44,7 +52,6 @@ if uploaded_file is not None:
     images_dict = {'Original Image': image}
 
     if blur:
-        # Adding help and recommended value to the slider
         blur_ksize = st.sidebar.slider('Blur Kernel Size', min_value=3, max_value=30, value=5, step=2, 
                                        help='Kernel size for the blur effect. Recommended value: 5.')
         st.markdown(f'<h2 class="centered-text">Blurred Image</h2>', unsafe_allow_html=True)
